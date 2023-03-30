@@ -24,6 +24,15 @@ class Snake():
         new_segment.goto(position)
         self.segments.append(new_segment)
 
+    def reset(self):
+        # sends old snakes (i.e. after game is over off the screen, so that they are not visible)
+        for seg in self.segments:
+            seg.goto(1000, 1000)
+        # resets segments array, creates a new snake and identifies segment[0] as the head (i.e. just like in the initializer)
+        self.segments.clear()
+        self.create_snake()
+        self.head = self.segments[0]
+
     def extend(self):
         #add a new segment to the snake
         self.add_segment(self.segments[-1].position())
